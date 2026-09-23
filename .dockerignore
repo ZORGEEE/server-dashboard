@@ -1,0 +1,12 @@
+.git
+.gitignore
+.gitlab-ci.yml
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.tar
+.env
+.venv/
+venv/

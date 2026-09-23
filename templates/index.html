@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="header">
+  <h1>Data Lab</h1>
+  <p>Инструменты Big Data</p>
+</div>
+
+<script id="tools-data" type="application/json">{{ tools | tojson }}</script>
+
+<div
+  class="page-sections"
+  style="
+    --col-width: {{ col_width }}px;
+    --grid-gap: {{ grid_gap }}px;
+    --card-size: {{ card_size }}px;
+    --row-width: {{ row_width }}px;
+  "
+>
+  {% for group in section_groups %}
+  <div
+    class="content-row content-row--{{ group.layout }}"
+    {% if group.layout == 'grouped' %}style="--group-gap: {{ group.group_gap }}px"{% endif %}
+  >
+    {% for section in group.sections %}
+    {% with inline=(group.layout == "grouped") %}
+    {% include "_section.html" %}
+    {% endwith %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2 id="modal-title"></h2>
+
+    <div id="modal-credentials">
+      <div class="credential-row">
+        <span class="credential-label">Логин</span>
+        <span class="credential-value-wrap">
+          <span class="credential-value" id="modal-login"></span>
+          <button class="btn-copy" type="button" data-copy-target="modal-login">копировать</button>
+        </span>
+      </div>
+      <div class="credential-row">
+        <span class="credential-label">Пароль</span>
+        <span class="credential-value-wrap">
+          <span class="credential-value" id="modal-password"></span>
+          <button class="btn-copy" type="button" data-copy-target="modal-password">копировать</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="modal-guide" id="modal-guide"></div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" type="button" id="modal-close-btn">Закрыть</button>
+      <button class="btn btn-primary" type="button" id="modal-open-btn">Открыть</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

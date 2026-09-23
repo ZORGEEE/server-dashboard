@@ -1,0 +1,58 @@
+{% if inline|default(false) %}
+<div
+  class="group-panel"
+  style="--grid-cols: {{ section.grid_cols }}"
+>
+  <h2 class="section-title">{{ section.title }}</h2>
+  <div class="tools-grid">
+    {% for tool in section.tools %}
+    <button class="tool-card" type="button" data-tool-id="{{ tool.id }}">
+      <div class="tool-icon">
+        {% if tool.icon_is_image %}
+        <img
+          src="{{ url_for('static', filename=tool.icon) }}"
+          alt="{{ tool.name }}"
+          class="tool-icon-img"
+        >
+        {% else %}
+        <span class="tool-icon-emoji">{{ tool.icon }}</span>
+        {% endif %}
+      </div>
+      <span class="tool-name">{{ tool.name }}</span>
+      {% if tool.running %}
+      <span class="tool-status tool-status--running">ЗАПУЩЕН</span>
+      {% else %}
+      <span class="tool-status tool-status--stopped">НЕ ЗАПУЩЕН</span>
+      {% endif %}
+    </button>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+<section class="tool-section">
+  <h2 class="section-title">{{ section.title }}</h2>
+  <div class="tools-grid" style="--grid-inner-width: {{ section.grid_width }}px">
+    {% for tool in section.tools %}
+    <button class="tool-card" type="button" data-tool-id="{{ tool.id }}">
+      <div class="tool-icon">
+        {% if tool.icon_is_image %}
+        <img
+          src="{{ url_for('static', filename=tool.icon) }}"
+          alt="{{ tool.name }}"
+          class="tool-icon-img"
+        >
+        {% else %}
+        <span class="tool-icon-emoji">{{ tool.icon }}</span>
+        {% endif %}
+      </div>
+      <span class="tool-name">{{ tool.name }}</span>
+      {% if tool.running %}
+      <span class="tool-status tool-status--running">ЗАПУЩЕН</span>
+      {% else %}
+      <span class="tool-status tool-status--stopped">НЕ ЗАПУЩЕН</span>
+      {% endif %}
+    </button>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

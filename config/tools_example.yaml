@@ -1,0 +1,114 @@
+# ============================================================
+# КАК РАЗМЕСТИТЬ СЕКЦИИ В ОДНУ СТРОКУ:
+# Добавьте одинаковое значение row у соседних секций, например row: top
+#
+# КАК ДОБАВИТЬ НОВУЮ СЕКЦИЮ:
+# 1. Добавьте блок в sections с id, title и списком tools
+# 2. Порядок секций на странице = порядок в этом файле
+#
+# КАК ДОБАВИТЬ НОВУЮ КНОПКУ:
+# 1. Скопируйте блок инструмента и вставьте в tools нужной секции
+# 2. Заполните поля:
+#    - id: уникальный идентификатор (латиница, без пробелов)
+#    - name: название на кнопке
+#    - url: ссылка для перехода (http://...) — используется при open_url: true
+#    - icon: emoji ("🌬️") ИЛИ путь к PNG в static/ ("icons/airflow.png")
+#    - running: true — зелёная плашка «ЗАПУЩЕН», false — красная «НЕ ЗАПУЩЕН»
+#    - credentials: null — клик сразу открывает url
+#                 или login/password — покажет модальное окно
+#    - open_url: true — в модалке кнопка «Открыть» (переход по url)
+#                false — только креды + connection_guide (без перехода)
+#    - connection_guide: текст инструкции (обязателен при open_url: false)
+# ============================================================
+
+sections:
+  - id: main
+    title: "Основные инструменты"
+    # row: first
+    tools:
+      - id:
+        name:
+        url:
+        icon: ""
+        running: true
+        credentials: null
+        open_url: true
+        connection_guide: null
+
+  - id: DB
+    title: "Источники данных"
+    row: second
+    tools:
+
+      - id: kafka
+        name: Apache Kafka
+        url: ""
+        icon: "icons/kafka-240.png"
+        running: true
+        credentials: null
+        open_url: true
+        connection_guide: |
+          Kafka broker:
+          Kafka UI: Открыть
+
+  - id: tools
+    title: "NoteBooks"
+    row: second
+    tools:
+      - id: colab
+        name: Google Colab
+        url: "https://colab.research.google.com/"
+        icon: "icons/colab.png"
+        running: true
+        credentials: null
+        open_url: true
+        connection_guide: null
+
+      - id: zeppelin
+        name: Zeppelin
+        url: ""
+        icon: "icons/zeppelin.png"
+        running: true
+        credentials: null
+        open_url: true
+        connection_guide: null
+
+  - id: monitoring
+    title: "Оркестрация и визуализация"
+    # row: second
+    tools:
+      - id: airflow
+        name: Airflow
+        url: ""
+        icon: "icons/airflow.png"
+        running: true
+        credentials:
+          login: airflow
+          password: airflow
+        open_url: true
+        connection_guide: null
+
+      - id: zellij
+        name: Zellij
+        url: ""
+        icon: "icons/zellij.png"
+        running: true
+        credentials: null
+        open_url: false
+        connection_guide: |
+          Терминальный мультиплексор
+          Подключение через консоль сервера zellij web
+          - Host:
+          - Port:
+
+  - id: cluster
+    title: "Hadoop"
+    tools:
+      - id: hdfs-namenode
+        name: HDFS NameNode
+        url: ""
+        icon: "icons/hadoop-240.png"
+        running: true
+        credentials: null
+        open_url: true
+        connection_guide: null
