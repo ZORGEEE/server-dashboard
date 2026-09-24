@@ -12,7 +12,7 @@
 #    - id: уникальный идентификатор (латиница, без пробелов)
 #    - name: название на кнопке
 #    - url: ссылка для перехода (http://...) — используется при open_url: true
-#    - icon: emoji ("🌬️") ИЛИ путь к PNG в static/ ("icons/airflow.png")
+#    - icon: emoji ИЛИ путь к PNG в static/ ("icons/airflow.png")
 #    - running: true — зелёная плашка «ЗАПУЩЕН», false — красная «НЕ ЗАПУЩЕН»
 #    - credentials: null — клик сразу открывает url
 #                 или login/password — покажет модальное окно
@@ -39,7 +39,6 @@ sections:
     title: "Источники данных"
     row: second
     tools:
-
       - id: kafka
         name: Apache Kafka
         url: ""
